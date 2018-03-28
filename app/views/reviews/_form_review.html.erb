@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <%= simple_form_for([@restaurant, @review]) do |f|   %>
+        <%= f.input :content, class: "form-control" %>
+        <%= f.input :rating, collection: 0..5, class: "form-control" %>
+        <div class="submit text-center">
+          <%= f.submit "Create a new review", class: "btn btn-danger"%>
+          </div>
+      <% end %>
+      </div>
+  </div>
+  <%= link_to "Back", restaurants_path %>
+</div>
