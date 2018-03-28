@@ -6,6 +6,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @reviews = @restaurant.reviews
+    @reviews_average = @reviews.count.positive? ? @reviews.average(:rating).round(2) : 'No review yet'
   end
 
   def new

@@ -1,10 +1,35 @@
 <div class="container">
-  <h1><%= @restaurant.name %></h1>
-  <h2>Address: <%= @restaurant.address %></h2>
-  <h3>Number: <%= @restaurant.phone_number %></h3>
-  <p>Type of food: <%= @restaurant.category %></p>
-  <% @reviews.each do |review| %>
-    <li><%= review.content %> <%= review.rating %> </li>
-  <% end %>
-  <%= link_to "Leave a review", new_restaurant_review_path(@restaurant), class: "btn btn-success" %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="restaurant-show">
+      <div class="name-review">
+        <h1><%= @restaurant.name %></h1>
+        <div class="review-btn"><%= link_to "Leave a review", new_restaurant_review_path(@restaurant), class: "btn btn-success" %></div>
+      </div>
+      <p><%= @reviews.count %> Reviews</p>
+      <p><%= @reviews_average %> <i class="fas fa-star" style="color: #F3CE3F;"></i></p>
+      <hr>
+      <div class="content">
+        <h3>Address: <%= @restaurant.address %></h3>
+        <p>Number: <%= @restaurant.phone_number %></p>
+        <p>Type of food: <%= @restaurant.category %></p>
+      </div>
+    </div>
+    <h2>Recomended Reviews:</h2>
+    <div class="reviews">
+      <% @reviews.each do |review| %>
+          <p><%= review.content %></p> <p>Rated:<% review.rating.times do %>
+          <i class="fas fa-star" style="color: #F3CE3F;"></i>
+          <% end %>
+          <%  (5 - review.rating).times do %>
+          <i class="fas fa-star" style="color: #ccc;"></i>
+        <% end %>
+        </p>
+        </p>
+        <hr>
+      <% end %>
+    </div>
+    <%= link_to "Back", restaurants_path %>
+  </div>
+</div>
 </div>
